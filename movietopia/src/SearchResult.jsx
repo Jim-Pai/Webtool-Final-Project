@@ -12,7 +12,9 @@ class SearchResult extends Component {
                     <div className="sr-movie">
                         <img src={image}/>
                         <div className="movie-intro">
-
+                            <p>Name: <span>Leon</span></p>
+                            <p>Year: <span>2017</span></p>
+                            <p>Score: <span>10.0</span></p>
                         </div>
                     </div>
                 </div>

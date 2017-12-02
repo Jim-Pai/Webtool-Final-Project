@@ -154,16 +154,29 @@ button, input{
 /*search result css*/
 
 .sr-container {
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .sr-movie {
-
+  display: flex;
+  flex-direction: row;
+  height:300px;
+  width:600px;
+  border: 3px solid #ffb72b;
+  justify-content: center;
 }
 .sr-movie img {
-
+  height:300px;
+  width:200px;
 }
 .movie-intro {
-
+  height:300px;
+  width:200px;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: Futura;
 }
 
