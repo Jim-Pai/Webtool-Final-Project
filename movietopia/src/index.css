@@ -65,8 +65,8 @@ body {
   text-align: center;
   background-color: #f2dede;
 }
-.login-title{
-  font-size: 3em;
+.login-form p{
+  font-size: 30px;
   font-family: fantasy;
   font-weight: bold;
 }

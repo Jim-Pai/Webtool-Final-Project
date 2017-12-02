@@ -32,10 +32,10 @@ class LoginPage extends Component {
 
     render() {
         return (
-        <div className="login-home-page">
-            <div className="login">
+        <div className="hp-head">
+            <div className="hp-title">
                 <div className="login-form">
-                    <p className="login-title">Word Game</p>
+                    <p className="login-title">Welcome to Movietopia</p>
                     <form>
                         <div className="user-name">
                             <label>Username:</label>
