@@ -9,7 +9,7 @@ class HomePage extends Component {
                 <div className="hp-head">
                     <div className="hp-title">
                         <p>Movietopia</p>
-                        <button>Login / Sign Up</button>
+                        <button onClick={this.props.submit}>Login / Sign Up</button>
                     </div>
                 </div>
 
