@@ -3,6 +3,6 @@
 This is our final project for Webtool class!
 
 Authors:
-Chun-AN Pai & Yalin Shan
+Chun-An Pai & Yalin Shan
 
 
