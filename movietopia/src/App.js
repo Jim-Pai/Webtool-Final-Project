@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomePage from "./HomePage";
 import LoginPage from "./LoginPage";
+import SearchPage from "./SearchPage";
 import './App.css';
 
 class App extends Component {
@@ -15,7 +16,8 @@ class App extends Component {
   render() {
     return (
         <div>
-            {this.state.qualifiedUser ? <LoginPage/> : <HomePage submit={this.onLogin}/>}
+            {/*{this.state.qualifiedUser ? <LoginPage/> : <HomePage submit={this.onLogin}/>}*/}
+            <SearchPage/>
         </div>
     );
   }
