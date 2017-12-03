@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FooterBar from './FooterBar';
 import './index.css';
 
 class LoginPage extends Component {
@@ -56,6 +57,7 @@ class LoginPage extends Component {
                     </div>
                 </div>
             </div>
+            <FooterBar/>
         </div>
 
         );

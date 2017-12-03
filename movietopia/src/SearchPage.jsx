@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import MoviePool from './MoviePool';
 import SearchResult from './SearchResult';
+import Footer from './FooterBar';
 import './index.css';
 
 
@@ -26,6 +27,7 @@ class SearchPage extends Component {
                 </div>
                 {this.state.movieWonder && <SearchResult/>}
                 <MoviePool/>
+                <Footer/>
             </div>
         );
     }
