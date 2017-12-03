@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './index.css';
+import {login, signup} from './login';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -22,12 +23,12 @@ class LoginPage extends Component {
             password: ''
         });
         const {username, password} = this.state;
-        this.props.onLogin({username, password});
+        login(username, password);
     };
 
     createAccount = () => {
         const {username, password} = this.state;
-        this.props.onCreateAccount({username, password});
+        signup(username, password);
     }
 
     render() {
