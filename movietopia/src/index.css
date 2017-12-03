@@ -192,7 +192,8 @@ button, input{
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: rgba(112, 182, 153, 1);
+  width:100%;
+  background-color: rgba(255, 225, 183, 1);
 }
 .mp-container p{
   font-size: 25px;
@@ -236,12 +237,36 @@ button, input{
   text-align: left;
   margin-left: 50px;
 }
-.mp-comments textarea {
+.mp-comments{
   width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 50px;
 }
-mp-movie-comments {
+.mp-comments textarea {
+  width:70%;
+}
+.mp-comments button {
+  width:10%;
+  font-size:30px;
+  border: 2px solid darkgoldenrod;
+  background-color: #ffb72b;
+  font-weight: bold;
+  font-family: Futura;
+  cursor: pointer;
+}
+.mp-movie-comments {
+  width:80%;
+  background-color: white;
+  padding-bottom: 50px;
+}
+.mp-comments-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
-}
 
 #auto-complete-dropdown {
   position: absolute;
@@ -265,3 +290,11 @@ mp-movie-comments {
   background-color: #ffffb3;
   cursor: pointer;
 }
+
+.mp-comments-user-said p {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Futura;
+  margin: 0;
+}
+

@@ -1,12 +1,36 @@
 import React, {Component} from 'react';
 import image from './movie-temp.jpg';
 import './index.css';
+import MovieComments from './MovieComments';
+
 
 
 class MoviePage extends Component {
     constructor(props){
         super(props);
-        this.state={}
+        this.state={
+            comments : [
+                {user: 'Lynne' , comments: 'This movie is really awesome'},
+                {user: 'Yalin' , comments:  'This movie is really awesome, I lovin it, its my favourite movie'},
+                {user: 'Pai' , comments:  'This movie is really awesome, I cannot love it more'}
+            ],
+            newComments: '',
+            user: 'Lynne'
+        }
+        this.addComments = this.addComments.bind(this);
+        this.setNewComments = this.setNewComments.bind(this);
+    }
+    setNewComments = (e) => {
+        this.setState({newComments:e.target.value})
+    }
+
+    addComments =() => {
+
+        if(this.state.newComments) {
+            const newList = [...this.state.comments];
+            newList.push({user: this.state.user ,comments: this.state.newComments});
+            this.setState({comments: newList});
+        }
     }
     render() {
         return(
@@ -31,14 +55,13 @@ class MoviePage extends Component {
                             </div>
                         </div>
                     </div>
+
+                    <MovieComments movieComments={this.state.comments}/>
+
                     <p>Leave your comments at here:</p>
-
                     <div className="mp-comments">
-                        <textarea rows="10" cols="200"></textarea>
-                    </div>
-                    <p>Movie lover's comments:</p>
-                    <div className="mp-movie-comments">
-
+                        <textarea rows="10" cols="auto" onChange={this.setNewComments}></textarea>
+                        <button onClick={this.addComments}>Submit</button>
                     </div>
                 </div>
             </div>
