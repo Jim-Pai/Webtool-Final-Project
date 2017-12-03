@@ -47,7 +47,7 @@ class App extends Component {
              <HomePage submit={this.goToLoginPage}/>}
         
             {this.state.inLoginPage && this.state.isLogin && <SearchPage user={this.state.currentUser}
-            onLogout={this.onLogout}/>
+            onLogout={this.onLogout}/>}
         </div>
     );
   }
