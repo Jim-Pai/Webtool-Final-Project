@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomePage from "./HomePage";
 import LoginPage from "./LoginPage";
+import MoviePage from "./MoviePage";
 import SearchPage from "./SearchPage";
 import './App.css';
 
@@ -17,7 +18,8 @@ class App extends Component {
     return (
         <div>
             {/*{this.state.qualifiedUser ? <LoginPage/> : <HomePage submit={this.onLogin}/>}*/}
-            <SearchPage/>
+            {/*<SearchPage/>*/}
+            <MoviePage/>
         </div>
     );
   }
