@@ -173,6 +173,11 @@ button, input{
   border: 3px solid #ffb72b;
   justify-content: center;
 }
+
+.sr-movie:hover {
+    cursor: pointer;
+}
+
 .sr-movie img {
   height:300px;
   width:200px;

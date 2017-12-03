@@ -12,6 +12,7 @@ class MoviePool extends Component {
                   'Justice League', '3 Idiots'],
             movies: []
         };
+        this.handleClick = this.handleClick.bind(this);
     }
     
     componentDidMount() {
@@ -37,13 +38,17 @@ class MoviePool extends Component {
         
     }
     
+    handleClick = (e) => {
+        this.props.onClick(e.currentTarget.title);
+    }
+    
     render() {
         return(
             <div className="movie-pool">
                 <div className="movie-container">
                     {this.state.movies.map( (movie, index) => {
                         return (
-                            <div className="movie">
+                            <div className="movie" title={movie.Title} onClick={this.handleClick}>
                                 <img src={movie.Poster}/>
                                 <p>{movie.Title}</p>
                             </div>

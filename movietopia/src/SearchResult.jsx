@@ -4,12 +4,20 @@ import './index.css';
 
 
 class SearchResult extends Component {
-
+    constructor() {
+        super();
+        this.handleClick = this.handleClick.bind(this);
+    }
+    
+    handleClick = (e) => {
+        this.props.onClick(e.currentTarget.title);
+    }
+    
     render() {
         return(
             <div>
                 <div className="sr-container">
-                    <div className="sr-movie">
+                    <div className="sr-movie" title={this.props.result.Title} onClick={this.handleClick}>
                         <img src={this.props.result.Poster}/>
                         <div className="movie-intro">
                             <p>Name: <span>{this.props.result.Title}</span></p>
