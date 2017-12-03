@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomePage from "./HomePage";
 import LoginPage from "./LoginPage";
+import MoviePage from "./MoviePage";
 import SearchPage from "./SearchPage";
 import './App.css';
 
@@ -46,7 +47,7 @@ class App extends Component {
              <HomePage submit={this.goToLoginPage}/>}
         
             {this.state.inLoginPage && this.state.isLogin && <SearchPage user={this.state.currentUser}
-            onLogout={this.onLogout}/>}
+            onLogout={this.onLogout}/>
         </div>
     );
   }
