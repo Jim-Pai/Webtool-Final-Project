@@ -24,7 +24,7 @@ class SearchPage extends Component {
                         <button onClick={this.findMovie}>GO!</button>
                     </div>
                 </div>
-                {this.state.movieWonder ? <SearchResult/> : <div></div>}
+                {this.state.movieWonder && <SearchResult/>}
                 <MoviePool/>
             </div>
         );
