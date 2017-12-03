@@ -51,7 +51,8 @@ export const getComments = (token) => {
     .catch(e => console.warn(e));
 }
 
-const saveComments = (token, movies) => {
+export const saveComments = (token, movies) => {
+    console.log('Save Comments');
     const url = `http://sea-info6250-crud.herokuapp.com/topics/garfi/movies`;
     return fetch(url, {
         method: 'PUT',

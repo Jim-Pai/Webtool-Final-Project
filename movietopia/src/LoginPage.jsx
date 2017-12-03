@@ -21,13 +21,13 @@ class LoginPage extends Component {
     onLogin = () => {
         const {username, password} = this.state;
         let token = '';
-        let username = '';
         let reviews = {};
         let comments = {};
         
         login(username, password)
+        .then(loginInfo => loginInfo.error ? Promise.reject(loginInfo) : loginInfo)
         .then(loginInfo => {
-            username = loginInfo.username;
+            this.props.onLogin({username, token: loginInfo.token});
             
             getAuthorization()
             .then(adminInfo => {
@@ -35,20 +35,16 @@ class LoginPage extends Component {
                 
                 getReviews(token)
                 .then(details => {
-                    reviews = details;
+                    this.props.onGetReviews(details);
                 });
-                
+
                 getComments(token)
                 .then(details => {
-                    comments = details;
+                    this.props.onGetComments(details);
                 });
-                
             })
-            
         })
         .catch(e => console.log(e));
-        
-        this.props.onLogin({username, token, reviews, comments});
     };
 
     createAccount = () => {
