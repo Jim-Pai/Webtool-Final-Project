@@ -19,17 +19,21 @@ class LoginPage extends Component {
     };
 
     onLogin = () => {
-        this.setState({
-            password: ''
-        });
         const {username, password} = this.state;
-        login(username, password);
+        login(username, password)
+        .then(loginInfo => {
+            this.setState({
+                currentUser: loginInfo.username
+            });
+            this.props.onLogin(loginInfo.username);
+        })
+        .catch(e => console.log(e));
     };
 
     createAccount = () => {
         const {username, password} = this.state;
         signup(username, password);
-    }
+    };
 
     render() {
         return (
@@ -52,8 +56,8 @@ class LoginPage extends Component {
                         </div>
                     </form>
                     <div className="login-button">
-                        <button role="button" onClick={this.onLogin}>Login</button>
-                        <button role="button" onClick={this.createAccount}>Sign Up</button>
+                        <button onClick={this.onLogin}>Login</button>
+                        <button onClick={this.createAccount}>Sign Up</button>
                     </div>
                 </div>
             </div>

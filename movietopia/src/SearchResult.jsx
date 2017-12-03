@@ -10,11 +10,11 @@ class SearchResult extends Component {
             <div>
                 <div className="sr-container">
                     <div className="sr-movie">
-                        <img src={image}/>
+                        <img src={this.props.result.Poster}/>
                         <div className="movie-intro">
-                            <p>Name: <span>Leon</span></p>
-                            <p>Year: <span>2017</span></p>
-                            <p>Score: <span>10.0</span></p>
+                            <p>Name: <span>{this.props.result.Title}</span></p>
+                            <p>Year: <span>{this.props.result.Year}</span></p>
+                            <p>Score: <span>{this.props.result.imdbRating}</span></p>
                         </div>
                     </div>
                 </div>

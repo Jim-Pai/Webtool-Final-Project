@@ -7,17 +7,46 @@ import './App.css';
 class App extends Component {
     constructor() {
         super();
-        this.state={qualifiedUser:false}
+        this.state={
+            inLoginPage: false,
+            isLogin: false,
+            currentUser: ''
+        };
+        this.goToLoginPage = this.goToLoginPage.bind(this);
         this.onLogin = this.onLogin.bind(this);
+        this.onLogout = this.onLogout.bind(this);
     }
-    onLogin= () => {
-        this.setState({qualifiedUser: true})
+    
+    goToLoginPage = () => {
+        this.setState({inLoginPage: true});
     }
+    
+    onLogin = (username) => {
+        this.setState({
+            inLoginPage: true,
+            currentUser: username,
+            isLogin: true
+        });
+    }
+    
+    onLogout = () => {
+        this.setState({
+            inLoginPage: false,
+            currentUser: '',
+            isLogin: false
+        });
+    }
+    
   render() {
     return (
         <div>
-            {/*{this.state.qualifiedUser ? <LoginPage/> : <HomePage submit={this.onLogin}/>}*/}
-            <SearchPage/>
+            {this.state.inLoginPage ? 
+             !this.state.isLogin && <LoginPage onLogin={this.onLogin}/> 
+            : 
+             <HomePage submit={this.goToLoginPage}/>}
+        
+            {this.state.inLoginPage && this.state.isLogin && <SearchPage user={this.state.currentUser}
+            onLogout={this.onLogout}/>}
         </div>
     );
   }
