@@ -3,6 +3,9 @@ import HomePage from "./HomePage";
 import LoginPage from "./LoginPage";
 //import MoviePage from "./MoviePage";
 import SearchPage from "./SearchPage";
+import UserPage from "./UserPage";
+import Header from "./HeaderBar";
+import Footer from "./FooterBar";
 import './App.css';
 import {saveReviews, saveComments} from './heroku';
 

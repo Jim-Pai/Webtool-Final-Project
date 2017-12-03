@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import MoviePool from './MoviePool';
 import SearchResult from './SearchResult';
+import Footer from './FooterBar';
 import AutoComplete from './AutoComplete';
 import MoviePage from "./MoviePage";
 import './index.css';
@@ -98,6 +99,7 @@ class SearchPage extends Component {
                         <MoviePool onClick={this.goToMovieInfo}/>
                     </div>
                 }
+                <Footer/>
             </div>
         );
     }

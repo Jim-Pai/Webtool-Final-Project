@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FooterBar from './FooterBar';
 import './index.css';
 import {login, signup} from './login';
 import {getAuthorization, getReviews, getComments} from './heroku';
@@ -78,6 +79,7 @@ class LoginPage extends Component {
                     </div>
                 </div>
             </div>
+            <FooterBar/>
         </div>
 
         );

@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
+import FooterBar from './FooterBar';
 import './index.css';
 
 class HomePage extends Component {
+    constructor() {
+        super();
+    }
 
     render() {
         return(
@@ -11,8 +15,8 @@ class HomePage extends Component {
                         <p>Movietopia</p>
                         <button onClick={this.props.submit}>Login / Sign Up</button>
                     </div>
+                    <FooterBar/>
                 </div>
-
             </div>
         );
     }
