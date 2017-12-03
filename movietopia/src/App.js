@@ -4,6 +4,7 @@ import LoginPage from "./LoginPage";
 import MoviePage from "./MoviePage";
 import SearchPage from "./SearchPage";
 import './App.css';
+import {saveReviews, saveComments} from './heroku';
 
 class App extends Component {
     constructor() {
@@ -16,17 +17,23 @@ class App extends Component {
         this.goToLoginPage = this.goToLoginPage.bind(this);
         this.onLogin = this.onLogin.bind(this);
         this.onLogout = this.onLogout.bind(this);
+        this.addUserReview = this.addUserReview.bind(this);
+        this.addMovieComment = this.addMovieComment.bind(this);
+        this.deleteUserReview = this.deleteUserReview.bind(this);
     }
     
     goToLoginPage = () => {
         this.setState({inLoginPage: true});
     }
     
-    onLogin = (username) => {
+    onLogin = ({username, token, reviews, comments}) => {
         this.setState({
             inLoginPage: true,
             currentUser: username,
-            isLogin: true
+            isLogin: true,
+            token,
+            reviews,
+            comments
         });
     }
     
@@ -36,6 +43,33 @@ class App extends Component {
             currentUser: '',
             isLogin: false
         });
+    }
+    
+    addUserReview = (username, review) => {
+        const allUserReviews = Object.assign({}, this.state.reviews);
+        if(!allUserReviews.username) {
+            allUserReviews.username = [];
+        }
+        allUserReviews.username.push(review);
+        saveReviews(this.state.token, allUserReviews);
+        this.setState({reviews: allUserReviews});
+    }
+    
+    addMovieComment = (movieTitle, comment) => {
+        const allMovieComments = Object.assign({}, this.state.comments);
+        if(!allMovieComments.movieTitle) {
+            allMovieComments.movieTitle = [];
+        }
+        allMovieComments.movieTitle.push(comment);
+        saveComments(this.state.token, allMovieComments);
+        this.setState({comments: allMovieComments});
+    }
+    
+    deleteUserReview = (username, index) => {
+        const allUserReviews = Object.assign({}, this.state.reviews);
+        allUserReviews.username.splice(index, 1);
+        saveReviews(this.state.token, allUserReviews);
+        this.setState({reviews: allUserReviews});
     }
     
   render() {

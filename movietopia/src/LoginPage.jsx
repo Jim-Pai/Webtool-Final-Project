@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './index.css';
 import {login, signup} from './login';
+import {getAuthorization, getReviews, getComments} from './heroku';
 
 class LoginPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
         this.updateUsername = this.updateUsername.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
     }
@@ -20,14 +20,35 @@ class LoginPage extends Component {
 
     onLogin = () => {
         const {username, password} = this.state;
+        let token = '';
+        let username = '';
+        let reviews = {};
+        let comments = {};
+        
         login(username, password)
         .then(loginInfo => {
-            this.setState({
-                currentUser: loginInfo.username
-            });
-            this.props.onLogin(loginInfo.username);
+            username = loginInfo.username;
+            
+            getAuthorization()
+            .then(adminInfo => {
+                token = adminInfo.token;
+                
+                getReviews(token)
+                .then(details => {
+                    reviews = details;
+                });
+                
+                getComments(token)
+                .then(details => {
+                    comments = details;
+                });
+                
+            })
+            
         })
         .catch(e => console.log(e));
+        
+        this.props.onLogin({username, token, reviews, comments});
     };
 
     createAccount = () => {
