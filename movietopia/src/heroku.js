@@ -1,6 +1,4 @@
-const fetch = require('node-fetch');
-
-const getReviews = (token) => {
+export const getReviews = (token) => {
     console.log(token);
     const url = `http://sea-info6250-crud.herokuapp.com/topics/garfi/reviews`;
     return fetch(url, {
@@ -18,7 +16,7 @@ const getReviews = (token) => {
     .catch(e => console.warn(e));
 }
 
-const saveReviews = (token, reviews) => {
+export const saveReviews = (token, reviews) => {
     const url = `http://sea-info6250-crud.herokuapp.com/topics/garfi/reviews`;
     fetch(url, {
         method: 'PUT',
@@ -36,7 +34,7 @@ const saveReviews = (token, reviews) => {
     .catch(e => console.warn(e));
 }
 
-const getMovies = (token) => {
+export const getComments = (token) => {
     const url = `http://sea-info6250-crud.herokuapp.com/topics/garfi/movies`;
     return fetch(url, {
         method: 'GET',
@@ -53,7 +51,7 @@ const getMovies = (token) => {
     .catch(e => console.warn(e));
 }
 
-const saveMovies = (token, movies) => {
+const saveComments = (token, movies) => {
     const url = `http://sea-info6250-crud.herokuapp.com/topics/garfi/movies`;
     return fetch(url, {
         method: 'PUT',
@@ -71,7 +69,7 @@ const saveMovies = (token, movies) => {
     .catch(e => console.warn(e));
 }
 
-const getAuthorization = () => {
+export const getAuthorization = () => {
     const url = `http://sea-info6250-crud.herokuapp.com/users/garfi/admin/session`;
     return fetch(url, {
         method: 'POST',
@@ -91,7 +89,7 @@ const getAuthorization = () => {
     });
 }
 
-const logoutAdmin = () => {
+export const logoutAdmin = () => {
     const url = `http://sea-info6250-crud.herokuapp.com/users/garfi/admin/session`;
     return fetch(url, {
         method: 'DELETE',
@@ -105,5 +103,3 @@ const logoutAdmin = () => {
     })
     .catch(e => console.warn(e));
 }
-
-module.exports = {getReviews, saveReviews, getMovies, saveMovies, getAuthorization, logoutAdmin};
