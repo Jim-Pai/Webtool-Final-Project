@@ -5,7 +5,7 @@ import logo from './ic_face_black_24px.svg';
 class MovieComments extends Component {
     constructor(props) {
         super(props);
-        console.log(props.movieComments);
+        //console.log(props.movieComments);
     }
 
     render() {

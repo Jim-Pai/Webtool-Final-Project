@@ -200,6 +200,11 @@ button, input{
   border: 3px solid #ffb72b;
   justify-content: center;
 }
+
+.sr-movie:hover {
+    cursor: pointer;
+}
+
 .sr-movie img {
   height:300px;
   width:200px;
@@ -294,12 +299,37 @@ button, input{
   justify-content: center;
 }
 
+
+#auto-complete-dropdown {
+  position: absolute;
+  top: 50px;
+  background-color: white;
+  color: gray;
+  font-size: 25px;
+  margin: 0px;
+  margin-top: 10px;
+  padding-left: 0px;
+  width: 100%;
+  text-align: left;
+}
+
+.hint-dropdown {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.hint-dropdown:hover {
+  background-color: #ffffb3;
+  cursor: pointer;
+}
+
 .mp-comments-user-said p {
   font-size: 20px;
   font-weight: bold;
   font-family: Futura;
   margin: 0;
 }
+
 
 /*user page css*/
 .up-container {
@@ -356,4 +386,3 @@ button, input{
 .up-delete {
   cursor: pointer;
 }
-
