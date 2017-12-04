@@ -9,54 +9,49 @@ class MoviePage extends Component {
     constructor(props){
         super(props);
         this.state={
-            comments : [
-                {user: 'Lynne' , comments: 'This movie is really awesome'},
-                {user: 'Yalin' , comments:  'This movie is really awesome, I lovin it, its my favourite movie'},
-                {user: 'Pai' , comments:  'This movie is really awesome, I cannot love it more'}
-            ],
-            newComments: '',
-            user: 'Lynne'
+            newComments: ''
         }
         this.addComments = this.addComments.bind(this);
         this.setNewComments = this.setNewComments.bind(this);
+        console.log(this.props.comments);
+            console.log(this.props.movie.Title);
+            console.log(this.props.comments[this.props.movie.Title]);
     }
+    
     setNewComments = (e) => {
-        this.setState({newComments:e.target.value})
+        this.setState({newComments:e.target.value});
     }
-
+    
     addComments =() => {
-
         if(this.state.newComments) {
-            const newList = [...this.state.comments];
-            newList.push({user: this.state.user ,comments: this.state.newComments});
-            this.setState({comments: newList});
+            const comment = {user: this.props.user , comments: this.state.newComments};
+            this.props.addComment(this.props.movie.Title, comment);
         }
     }
+    
     render() {
-        return(
+        const movie = this.props.movie;
+        return (
             <div>
+
                 <div className="mp-container">
                     <div className="mp-movie-outer">
                         <div className="mp-movie">
-                            <img src={image}/>
+                            <img src={movie.Poster}/>
                             <div className="mp-movie-intro">
-                                <p>Name: <span>Leon</span></p>
-                                <p>Director: <span>Yalin</span></p>
-                                <p>Year: <span>2017</span></p>
-                                <p>Runtime: <span>135min</span></p>
-                                <p>Score: <span>10.0</span></p>
-                                <p>Genre: <span>Cartoon</span></p>
-                                <p>Country: <span>USA</span></p>
-                                <p>Actors:</p>
-                                <ul>
-                                    <li>Yalin</li>
-                                    <li>Lynne</li>
-                                </ul>
+                                <p>Name: <span>{movie.Title}</span></p>
+                                <p>Director: <span>{movie.Director}</span></p>
+                                <p>Year: <span>{movie.Year}</span></p>
+                                <p>Runtime: <span>{movie.Runtime}</span></p>
+                                <p>Score: <span>{movie.imdbRating}</span></p>
+                                <p>Genre: <span>{movie.Genre}</span></p>
+                                <p>Country: <span>{movie.Country}</span></p>
                             </div>
                         </div>
                     </div>
 
-                    <MovieComments movieComments={this.state.comments}/>
+                    <MovieComments
+                        movieComments={this.props.comments[this.props.movie.Title] ? this.props.comments[this.props.movie.Title] : []}/>
 
                     <p>Leave your comments at here:</p>
                     <div className="mp-comments">
@@ -64,6 +59,7 @@ class MoviePage extends Component {
                         <button onClick={this.addComments}>Submit</button>
                     </div>
                 </div>
+
             </div>
         );
     }
