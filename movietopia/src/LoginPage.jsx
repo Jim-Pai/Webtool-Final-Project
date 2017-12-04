@@ -70,6 +70,7 @@ class LoginPage extends Component {
                             <label>Password:</label>
                             <input className="form-control"
                                    placeholder="password..."
+                                   type="password"
                                    onChange={this.updatePassword}/>
                         </div>
                     </form>
