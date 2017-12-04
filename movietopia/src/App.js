@@ -4,7 +4,6 @@ import LoginPage from "./LoginPage";
 //import MoviePage from "./MoviePage";
 import SearchPage from "./SearchPage";
 import './App.css';
-import {saveReviews, saveComments} from './heroku';
 
 class App extends Component {
     constructor() {
@@ -59,29 +58,61 @@ class App extends Component {
             allUserReviews[username] = [];
         }
         allUserReviews[username].push(review);
-        saveReviews(this.state.token, allUserReviews);
         this.setState({reviews: allUserReviews});
     }
     
     addMovieComment = (movieTitle, comment) => {
         const allMovieComments = Object.assign({}, this.state.comments);
+        const user = comment.user;
+        const comments = comment.comments;
         if(!allMovieComments[movieTitle]) {
             allMovieComments[movieTitle] = [];
         }
         allMovieComments[movieTitle].push(comment);
-        console.log(allMovieComments[movieTitle]);
-        saveComments(this.state.token, allMovieComments);
+        this.addUserReview(user, {movieTitle, comments});
+        fetch(`//localhost:8000/review/${user}/${movieTitle}`, {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify({comment}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         this.setState({comments: allMovieComments});
     }
     
-    deleteUserReview = (username, index) => {
+    deleteUserReview = (movieTitle, comment, index) => {
         const allUserReviews = Object.assign({}, this.state.reviews);
-        allUserReviews[username].splice(index, 1);
-        saveReviews(this.state.token, allUserReviews);
-        this.setState({reviews: allUserReviews});
+        const allMovieComments = Object.assign({}, this.state.comments);
+        const user = comment.user;
+        allUserReviews[user].splice(index, 1);
+        this.removeFirstObject(allMovieComments[movieTitle], comment);
+        
+        fetch(`//localhost:8000/review/${user}/${movieTitle}`, {
+            method: 'DELETE',
+            credentials: 'include',
+            body: JSON.stringify({comment, index}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        this.setState({reviews: allUserReviews, comments: allMovieComments});
     }
     
-
+    const removeFirstObject = (arr, target) => {
+        for(i in arr) {
+            let dup = true;
+            for(key in arr[i]) {
+                if(arr[i][key] !== target[key]) {
+                    dup = false;
+                }
+            }
+            if(dup) {
+                arr.splice(i, 1);
+                break;
+            }
+        }
+    }
     
   render() {
     return (
