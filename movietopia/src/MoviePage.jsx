@@ -51,7 +51,7 @@ class MoviePage extends Component {
                     </div>
 
                     <MovieComments
-                        movieComments={this.props.comments && this.props.comments[this.props.movie.Title] ? this.props.comments[this.props.movie.Title] : []}/>
+                        movieComments={this.props.comments[this.props.movie.Title] ? this.props.comments[this.props.movie.Title] : []}/>
 
                     <p>Leave your comments at here:</p>
                     <div className="mp-comments">
