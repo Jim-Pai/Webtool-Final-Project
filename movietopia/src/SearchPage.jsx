@@ -48,7 +48,10 @@ class SearchPage extends Component {
 
     findMovie = () => {
         const title = this.state.movieTitle;
-        this.setState({movieWonder: true});
+        this.setState({
+            movieWonder: true,
+            movieTitle:''
+        });
         fetch(`//localhost:8000/movie/${title}`, {
             method: 'GET',
             credential: 'include'
