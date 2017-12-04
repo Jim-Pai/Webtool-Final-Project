@@ -42,10 +42,18 @@ app.post('/review/:username/:movieTitle', jsonParser, (req, res) => {
     console.log(body);
     const username = req.params.username;
     const movieTitle = req.params.movieTitle;
-    const reviewList = reviews.username;
-    const commentList = comments.movieTitle;
-    reviewList.push({title: movieTitle, comments: body.comment});
-    commentList.push({user: username, comments: body.comment});
+    if(!reviews[username]) {
+        reviews[username] = [];
+    }
+    const reviewList = reviews[username];
+    
+    if(!comments[movieTitle]) {
+        comments[movieTitle] = [];
+    }
+    const commentList = comments[movieTitle];
+    
+    reviewList.push({movieTitle: movieTitle, comments: body.comment.comments});
+    commentList.push({user: username, comments: body.comment.comments});
     
     heroku.saveReviews(token, reviews)
     .then(j => console.log(j));
@@ -59,12 +67,12 @@ app.delete('/review/:username/:movieTitle', jsonParser, (req, res) => {
     console.log(body);
     const username = req.params.username;
     const movieTitle = req.params.movieTitle;
-    const reviewList = reviews.username;
-    const commentList = comments.movieTitle;
+    const reviewList = reviews[username];
+    const commentList = comments[movieTitle];
     const index = body.index;
     
     reviewList.splice(index, 1);
-    removeFirstObject(commentList, {user: username, comments: body.comments});
+    removeFirstObject(commentList, {user: username, comments: body.comment.comments});
     
     heroku.saveReviews(token, reviews)
     .then(j => console.log(j));
@@ -96,9 +104,9 @@ app.listen(PORT, () => {
 });
 
 const removeFirstObject = (arr, target) => {
-    for(i in arr) {
+    for(let i in arr) {
         let dup = true;
-        for(key in arr[i]) {
+        for(let key in arr[i]) {
             if(arr[i][key] !== target[key]) {
                 dup = false;
             }

@@ -98,7 +98,9 @@ class SearchPage extends Component {
                 currentMovie: j,
                 inMovieInfo: true,
                 inSearchPage: false,
-                inUserPage: false
+                inUserPage: false,
+                movieWonder: false,
+                movieTitle: ''
             });
         })
         .catch(e => console.log(e));
@@ -108,9 +110,8 @@ class SearchPage extends Component {
         return(
             <div>
                 <Header onLogOut={this.props.onLogout} onUserPage={this.goToUserProfile} onSearchPage={this.backToSearchPage} user={this.props.user}/>
-                {this.state.inUserPage && <UserPage user={this.props.user}/>}
-                {this.state.inMovieInfo && <MoviePage comments={this.props.comments} movie={this.state.currentMovie} user={this.props.user}
-                        addComment={this.props.addComment}/>}
+                {this.state.inUserPage && <UserPage user={this.props.user} deleteComment={this.props.deleteComment} reviews={this.props.reviews}/>}
+                {this.state.inMovieInfo && <MoviePage comments={this.props.comments} movie={this.state.currentMovie} user={this.props.user} addComment={this.props.addComment}/>}
                 {this.state.inSearchPage &&
                     <div>
                         <div className="sp-search">

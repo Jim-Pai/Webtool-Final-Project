@@ -14,8 +14,8 @@ class MoviePage extends Component {
         this.addComments = this.addComments.bind(this);
         this.setNewComments = this.setNewComments.bind(this);
         console.log(this.props.comments);
-            console.log(this.props.movie.Title);
-            console.log(this.props.comments[this.props.movie.Title]);
+        console.log(this.props.movie.Title);
+        console.log(this.props.comments[this.props.movie.Title]);
     }
     
     setNewComments = (e) => {

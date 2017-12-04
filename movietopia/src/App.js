@@ -98,10 +98,10 @@ class App extends Component {
         this.setState({reviews: allUserReviews, comments: allMovieComments});
     }
     
-    const removeFirstObject = (arr, target) => {
-        for(i in arr) {
+    removeFirstObject = (arr, target) => {
+        for(let i in arr) {
             let dup = true;
-            for(key in arr[i]) {
+            for(let key in arr[i]) {
                 if(arr[i][key] !== target[key]) {
                     dup = false;
                 }
@@ -122,7 +122,7 @@ class App extends Component {
              <HomePage submit={this.goToLoginPage}/>}
 
             {this.state.inLoginPage && this.state.isLogin && <SearchPage user={this.state.currentUser}
-            onLogout={this.onLogout} comments={this.state.comments} addComment={this.addMovieComment} deleteComment={this.deleteComment}/>}
+            onLogout={this.onLogout} comments={this.state.comments} reviews={this.state.reviews} addComment={this.addMovieComment} deleteComment={this.deleteComment}/>}
         </div>
 
     );
