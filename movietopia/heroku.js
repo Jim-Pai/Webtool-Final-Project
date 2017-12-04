@@ -1,18 +1,17 @@
 const fetch = require('node-fetch');
 
 const getReviews = (token) => {
-    console.log(token);
     const url = `http://sea-info6250-crud.herokuapp.com/topics/garfi/reviews`;
     return fetch(url, {
         method: 'GET',
         credentials: 'include',
-        header: {
-            Cookie: `userToken=${token}`
+        headers: {
+            Cookie: `userToken=${token}`,
+            'Content-Type': 'application/json'
         }
     })
     .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)))
     .then(j => {
-        console.log(j);
         return j.details;
     })
     .catch(e => console.warn(e));
@@ -20,52 +19,52 @@ const getReviews = (token) => {
 
 const saveReviews = (token, reviews) => {
     const url = `http://sea-info6250-crud.herokuapp.com/topics/garfi/reviews`;
-    fetch(url, {
+    return fetch(url, {
         method: 'PUT',
         credentials: 'include',
 		    body: JSON.stringify({toStore: reviews}),
-        header: {
-            Cookie: `userToken=${token}`
+        headers: {
+            Cookie: `userToken=${token}`,
+            'Content-Type': 'application/json'
         }
     })
     .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)))
     .then(j => {
-        console.log(j);
         return j;
     })
     .catch(e => console.warn(e));
 }
 
-const getMovies = (token) => {
+const getMovieComments = (token) => {
     const url = `http://sea-info6250-crud.herokuapp.com/topics/garfi/movies`;
     return fetch(url, {
         method: 'GET',
         credentials: 'include',
-        header: {
-            Cookie: `userToken=${token}`
+        headers: {
+            Cookie: `userToken=${token}`,
+            'Content-Type': 'application/json'
         }
     })
     .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)))
     .then(j => {
-        console.log(j);
         return j.details;
     })
     .catch(e => console.warn(e));
 }
 
-const saveMovies = (token, movies) => {
+const saveMovieComments = (token, comments) => {
     const url = `http://sea-info6250-crud.herokuapp.com/topics/garfi/movies`;
     return fetch(url, {
         method: 'PUT',
         credentials: 'include',
-		    body: JSON.stringify({toStore: movies}),
-        header: {
-            Cookie: `userToken=${token}`
+		    body: JSON.stringify({toStore:comments}),
+        headers: {
+            Cookie: `userToken=${token}`,
+            'Content-Type': 'application/json'
         }
     })
     .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)))
     .then(j => {
-        console.log(j);
         return j;
     })
     .catch(e => console.warn(e));
@@ -76,13 +75,15 @@ const getAuthorization = () => {
     return fetch(url, {
         method: 'POST',
         credentials: 'include',
-		    body: JSON.stringify({password: 'garfi'})
+		    body: JSON.stringify({password:'garfi'}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     })
     .then(r => {
         return r.ok ? r.json() : r.json().then(j => Promise.reject(j))
     })
     .then(j => {
-        console.log(j);
         return j;// token is here
     })
     .catch(e => {
@@ -96,7 +97,10 @@ const logoutAdmin = () => {
     return fetch(url, {
         method: 'DELETE',
         credentials: 'include',
-		    body: JSON.stringify({password:'garfi'})
+		    body: JSON.stringify({password:'garfi'}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     })
     .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)))
     .then(j => {
@@ -106,4 +110,4 @@ const logoutAdmin = () => {
     .catch(e => console.warn(e));
 }
 
-module.exports = {getReviews, saveReviews, getMovies, saveMovies, getAuthorization, logoutAdmin};
+module.exports = {getReviews, saveReviews, getMovieComments, saveMovieComments, getAuthorization, logoutAdmin};

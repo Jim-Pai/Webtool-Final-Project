@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import FooterBar from './FooterBar';
 import './index.css';
 import {login, signup} from './login';
-import {getAuthorization, getReviews, getComments} from './heroku';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -30,27 +29,29 @@ class LoginPage extends Component {
         .then(loginInfo => {
             this.props.onLogin({username, token: loginInfo.token});
             
-            getAuthorization()
-            .then(adminInfo => {
-                token = adminInfo.token;
-                
-                getReviews(token)
-                .then(details => {
-                    this.props.onGetReviews(details);
-                });
-
-                getComments(token)
-                .then(details => {
-                    this.props.onGetComments(details);
-                });
-            })
+            fetch('//localhost:8000/reviews')
+            .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)))
+            .then(reviews => {
+                this.props.onGetReviews(reviews);
+            });
+            
+            fetch('//localhost:8000/comments')
+            .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)))
+            .then(comments => {
+                this.props.onGetComments(comments);
+            });
         })
         .catch(e => console.log(e));
     };
 
     createAccount = () => {
         const {username, password} = this.state;
-        signup(username, password);
+        signup(username, password)
+        .then(loginInfo => loginInfo.error ? Promise.reject(loginInfo) : loginInfo)
+        .then(loginInfo => {
+            this.props.onLogin({username, token: loginInfo.token});
+        })
+        .catch(e => console.log(e));
     };
 
     render() {
