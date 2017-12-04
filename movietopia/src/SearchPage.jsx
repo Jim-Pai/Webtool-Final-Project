@@ -27,7 +27,6 @@ class SearchPage extends Component {
                 </div>
                 {this.state.movieWonder && <SearchResult/>}
                 <MoviePool/>
-                <Footer/>
             </div>
         );
     }

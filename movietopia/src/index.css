@@ -9,6 +9,32 @@ button, input{
   border:0;
 }
 /*heater and footer css*/
+#wrapper {
+  background-color:grey;
+  width:100%;
+  height:70px;
+  line-height: 70px;
+  z-index: 100;
+}
+ul.nav {
+  overflow:hidden;
+  list-style:none;
+  padding:0;
+  position:relative;
+  margin:0 auto;
+}
+li {
+  margin:0 50px;
+  font-size: 25px;
+  color: #ffb72b;
+  cursor: pointer;
+}
+li.left {
+  float:left;
+}
+li.right {
+  float:right;
+}
 .movie-footer {
   height:70px;
   line-height: 70px;
@@ -19,33 +45,16 @@ button, input{
 .movie-footer p{
   margin: 0;
 }
-.movie-header {
-  
-  height:70px;
-  line-height: 70px;
-  background-color: grey;
-  color: #ffb72b;
-  font-size: 25px;
-
-}
-.movie-header.right{
-  float:right;
-}
-.movie-header div{
-  margin:0;
-  margin-left: 50px;
-}
 /*home page css*/
 
 .hp-head{
   background-image: url("homepage-bg.jpg");
-  /*opacity: 0.8;*/
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -100;
+  height:100%;
 }
 
 .hp-title{

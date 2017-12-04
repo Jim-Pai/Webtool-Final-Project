@@ -9,13 +9,13 @@ class HeaderBar extends Component {
 
     render() {
         return(
-            <div>
-                <div className="movie-header">
-                    <div>Hi {this.state.user}</div>
-                    <div className="right">Movie</div>
-                    <div className="right">Profile</div>
-                    <div className="right">Log out</div>
-                </div>
+            <div id="wrapper">
+                <ul className="nav">
+                    <li className="left">Hi, {this.state.user}</li>
+                    <li className="right" onClick={this.props.logOut}>Log out</li>
+                    <li className="right" onClick={this.props.userPage}>Profile</li>
+                    <li className="right" onClick={this.props.searchPage}>Movie</li>
+                </ul>
             </div>
         );
     }

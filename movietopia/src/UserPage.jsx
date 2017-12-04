@@ -16,6 +16,9 @@ class UserPage extends Component {
                 ]
         }
     }
+    deleteComment = () => {
+
+    }
 
     render() {
         return(
@@ -32,13 +35,12 @@ class UserPage extends Component {
 
                                 <div className="up-comment">
                                     <p>{history.comment}</p>
-                                    <img className="up-delete" src={deleteLogo}/>
+                                    <img className="up-delete" src={deleteLogo} onClick={console.log('ahahha')}/>
                                 </div>
                             </div>
                         )
                     })}
                 </div>
-                <Footer/>
             </div>
         );
     }
