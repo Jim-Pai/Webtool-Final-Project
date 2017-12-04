@@ -6,8 +6,6 @@ import deleteLogo from './ic_delete_black_24px.svg';
 class UserPage extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props.reviews);
-        console.log(this.props.reviews[this.props.user]);
         this.deleteComment = this.deleteComment.bind(this);
     }
     

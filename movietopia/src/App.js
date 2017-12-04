@@ -26,6 +26,7 @@ class App extends Component {
     goToLoginPage = () => {
         this.setState({inLoginPage: true});
     }
+    
     onLogin = ({username, token}) => {
         this.setState({
             inLoginPage: true,
