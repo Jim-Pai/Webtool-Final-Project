@@ -349,10 +349,9 @@ li.right {
   background-image: url("userpage-bg.jpg");
   background-attachment: fixed;
   background-size: cover;
-  min-height: 100%;
+  min-height: 1024px;
   min-width: 1024px;
   width: 100%;
-  height: auto;
   /*position: fixed;*/
   top: 0;
   left: 0;
