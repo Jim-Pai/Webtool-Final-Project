@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import image from './movie-temp.jpg';
 import './index.css';
 
 

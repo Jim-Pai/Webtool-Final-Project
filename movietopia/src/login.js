@@ -35,7 +35,7 @@ export const logout = ( user, callback ) => {
     });
   })
   .then( r => r.ok ? r.json() : r.json().then( j => Promise.reject(j) ) )
-  .then( j => { console.log(j); callback() } )
+  .then( j => { console.log(j); return j; } )
   .catch( e => console.warn(e) )
 };
 

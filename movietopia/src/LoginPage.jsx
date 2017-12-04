@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import FooterBar from './FooterBar';
 import './index.css';
 import {login, signup} from './login';
 
@@ -20,9 +19,6 @@ class LoginPage extends Component {
 
     onLogin = () => {
         const {username, password} = this.state;
-        let token = '';
-        let reviews = {};
-        let comments = {};
         
         login(username, password)
         .then(loginInfo => loginInfo.error ? Promise.reject(loginInfo) : loginInfo)

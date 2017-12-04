@@ -26,13 +26,13 @@ class UserPage extends Component {
                         return(
                             <div className="up-section" key={index}>
                                 <div className="mp-comments-user">
-                                    <img src={logo}/>
+                                    <img alt="logo" src={logo}/>
                                     <p>{history.movieTitle}: </p>
                                 </div>
 
                                 <div className="up-comment">
                                     <p>{history.comments}</p>
-                                    <img className="up-delete" src={deleteLogo} onClick={() => this.deleteComment(index)}/>
+                                    <img className="up-delete" alt="delete-btn" src={deleteLogo} onClick={() => this.deleteComment(index)}/>
                                 </div>
                             </div>
                         )
