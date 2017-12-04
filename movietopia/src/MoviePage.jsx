@@ -27,6 +27,9 @@ class MoviePage extends Component {
             const comment = {user: this.props.user , comments: this.state.newComments};
             this.props.addComment(this.props.movie.Title, comment);
         }
+        this.setState({
+            newComments:''
+        })
     }
     
     render() {
@@ -55,7 +58,7 @@ class MoviePage extends Component {
 
                     <p>Leave your comments at here:</p>
                     <div className="mp-comments">
-                        <textarea rows="10" cols="auto" onChange={this.setNewComments}></textarea>
+                        <textarea rows="10" cols="auto" onChange={this.setNewComments} value={this.state.newComments}></textarea>
                         <button onClick={this.addComments}>Submit</button>
                     </div>
                 </div>
