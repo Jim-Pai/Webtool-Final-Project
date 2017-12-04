@@ -46,6 +46,18 @@ class LoginPage extends Component {
         .then(loginInfo => loginInfo.error ? Promise.reject(loginInfo) : loginInfo)
         .then(loginInfo => {
             this.props.onLogin({username, token: loginInfo.token});
+            
+            fetch('//localhost:8000/reviews')
+            .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)))
+            .then(reviews => {
+                this.props.onGetReviews(reviews);
+            });
+            
+            fetch('//localhost:8000/comments')
+            .then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)))
+            .then(comments => {
+                this.props.onGetComments(comments);
+            });
         })
         .catch(e => console.log(e));
     };
