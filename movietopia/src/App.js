@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import HomePage from "./HomePage";
 import LoginPage from "./LoginPage";
-//import MoviePage from "./MoviePage";
 import SearchPage from "./SearchPage";
+import UserPage from './UserPage';
 import './App.css';
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
         this.onLogout = this.onLogout.bind(this);
         this.addUserReview = this.addUserReview.bind(this);
         this.addMovieComment = this.addMovieComment.bind(this);
-        this.deleteUserReview = this.deleteUserReview.bind(this);
+        this.deleteComment = this.deleteComment.bind(this);
         this.getReviews = this.getReviews.bind(this);
         this.getComments = this.getComments.bind(this);
     }
@@ -26,7 +26,6 @@ class App extends Component {
     goToLoginPage = () => {
         this.setState({inLoginPage: true});
     }
-    
     onLogin = ({username, token}) => {
         this.setState({
             inLoginPage: true,
@@ -49,7 +48,7 @@ class App extends Component {
             inLoginPage: false,
             currentUser: '',
             isLogin: false
-        });
+        })
     }
     
     addUserReview = (username, review) => {
@@ -81,7 +80,7 @@ class App extends Component {
         this.setState({comments: allMovieComments});
     }
     
-    deleteUserReview = (movieTitle, comment, index) => {
+    deleteComment = (movieTitle, comment, index) => {
         const allUserReviews = Object.assign({}, this.state.reviews);
         const allMovieComments = Object.assign({}, this.state.comments);
         const user = comment.user;
@@ -117,14 +116,15 @@ class App extends Component {
   render() {
     return (
         <div>
-            {this.state.inLoginPage ? 
-             !this.state.isLogin && <LoginPage onLogin={this.onLogin} onGetReviews={this.getReviews} onGetComments={this.getComments}/> 
-            : 
+            {this.state.inLoginPage ?
+             !this.state.isLogin && <LoginPage onLogin={this.onLogin} onGetReviews={this.getReviews} onGetComments={this.getComments}/>
+            :
              <HomePage submit={this.goToLoginPage}/>}
-        
+
             {this.state.inLoginPage && this.state.isLogin && <SearchPage user={this.state.currentUser}
-            onLogout={this.onLogout} comments={this.state.comments} addComment={this.addMovieComment}/>}
+            onLogout={this.onLogout} comments={this.state.comments} addComment={this.addMovieComment} deleteComment={this.deleteComment}/>}
         </div>
+
     );
   }
 }

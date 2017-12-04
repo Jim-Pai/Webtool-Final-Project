@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import './index.css';
 
 class HomePage extends Component {
+    constructor() {
+        super();
+    }
 
     render() {
         return(
@@ -12,7 +15,6 @@ class HomePage extends Component {
                         <button onClick={this.props.submit}>Login / Sign Up</button>
                     </div>
                 </div>
-
             </div>
         );
     }

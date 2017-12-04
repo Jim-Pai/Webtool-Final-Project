@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FooterBar from './FooterBar';
 import './index.css';
 import {login, signup} from './login';
 
@@ -70,6 +71,7 @@ class LoginPage extends Component {
                             <label>Password:</label>
                             <input className="form-control"
                                    placeholder="password..."
+                                   type="password"
                                    onChange={this.updatePassword}/>
                         </div>
                     </form>
