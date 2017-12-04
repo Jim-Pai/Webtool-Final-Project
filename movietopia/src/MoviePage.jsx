@@ -31,9 +31,9 @@ class MoviePage extends Component {
     
     render() {
         const movie = this.props.movie;
-        const actors = movie.Actors.split(',');
-        return(
+        return (
             <div>
+
                 <div className="mp-container">
                     <div className="mp-movie-outer">
                         <div className="mp-movie">
@@ -46,17 +46,12 @@ class MoviePage extends Component {
                                 <p>Score: <span>{movie.imdbRating}</span></p>
                                 <p>Genre: <span>{movie.Genre}</span></p>
                                 <p>Country: <span>{movie.Country}</span></p>
-                                <p>Actors:</p>
-                                <ul>
-                                    {actors.map( (actor, index) => {
-                                        return (<li key={index}>{actor}</li>)
-                                    })}
-                                </ul>
                             </div>
                         </div>
                     </div>
 
-                    <MovieComments movieComments={this.props.comments[this.props.movie.Title] ? this.props.comments[this.props.movie.Title] : []}/>
+                    <MovieComments
+                        movieComments={this.props.comments[this.props.movie.Title] ? this.props.comments[this.props.movie.Title] : []}/>
 
                     <p>Leave your comments at here:</p>
                     <div className="mp-comments">
@@ -64,6 +59,7 @@ class MoviePage extends Component {
                         <button onClick={this.addComments}>Submit</button>
                     </div>
                 </div>
+
             </div>
         );
     }

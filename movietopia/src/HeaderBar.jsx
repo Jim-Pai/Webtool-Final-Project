@@ -4,18 +4,18 @@ import './index.css';
 class HeaderBar extends Component {
     constructor(props){
         super(props);
-        this.state={user: 'Lynne'}
+        this.state={}
     }
 
     render() {
         return(
-            <div>
-                <div className="movie-header">
-                    <div>Hi {this.state.user}</div>
-                    <div className="right">Movie</div>
-                    <div className="right">Profile</div>
-                    <div className="right">Log out</div>
-                </div>
+            <div id="wrapper">
+                <ul className="nav">
+                    <li className="left">Hi, {this.props.user}</li>
+                    <li className="right" onClick={this.props.onLogOut}>Log out</li>
+                    <li className="right" onClick={this.props.onUserPage}>Profile</li>
+                    <li className="right" onClick={this.props.onSearchPage}>Movie</li>
+                </ul>
             </div>
         );
     }

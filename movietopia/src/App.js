@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import HomePage from "./HomePage";
 import LoginPage from "./LoginPage";
-//import MoviePage from "./MoviePage";
 import SearchPage from "./SearchPage";
-import UserPage from "./UserPage";
-import Header from "./HeaderBar";
-import Footer from "./FooterBar";
+import UserPage from './UserPage';
 import './App.css';
 import {saveReviews, saveComments} from './heroku';
 
@@ -30,7 +27,6 @@ class App extends Component {
     goToLoginPage = () => {
         this.setState({inLoginPage: true});
     }
-    
     onLogin = ({username, token}) => {
         this.setState({
             inLoginPage: true,
@@ -53,7 +49,7 @@ class App extends Component {
             inLoginPage: false,
             currentUser: '',
             isLogin: false
-        });
+        })
     }
     
     addUserReview = (username, review) => {
@@ -85,18 +81,19 @@ class App extends Component {
     }
     
 
-    
+
   render() {
     return (
         <div>
-            {this.state.inLoginPage ? 
-             !this.state.isLogin && <LoginPage onLogin={this.onLogin} onGetReviews={this.getReviews} onGetComments={this.getComments}/> 
-            : 
+            {this.state.inLoginPage ?
+             !this.state.isLogin && <LoginPage onLogin={this.onLogin} onGetReviews={this.getReviews} onGetComments={this.getComments}/>
+            :
              <HomePage submit={this.goToLoginPage}/>}
-        
+
             {this.state.inLoginPage && this.state.isLogin && <SearchPage user={this.state.currentUser}
             onLogout={this.onLogout} comments={this.state.comments} addComment={this.addMovieComment}/>}
         </div>
+
     );
   }
 }
