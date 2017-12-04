@@ -7,6 +7,7 @@ import UserPage from './UserPage';
 import AutoComplete from './AutoComplete';
 import MoviePage from "./MoviePage";
 import './index.css';
+import {logout} from './login';
 
 
 class SearchPage extends Component {
@@ -29,6 +30,7 @@ class SearchPage extends Component {
         this.goToMovieInfo = this.goToMovieInfo.bind(this);
         this.goToUserProfile = this.goToUserProfile.bind(this);
         this.backToSearchPage = this.backToSearchPage.bind(this);
+        this.onLogout = this.onLogout.bind(this);
     }
 
     goToUserProfile = () => {
@@ -76,7 +78,7 @@ class SearchPage extends Component {
                     this.setState({hints: j.Search});
                 }
                 else {
-                    console.warn('Empty');
+                    //console.warn('Empty');
                     this.setState({hints: []});
                 }
             })
@@ -108,11 +110,18 @@ class SearchPage extends Component {
         })
         .catch(e => console.log(e));
     }
-
+    
+    onLogout = () => {
+        logout(this.props.user)
+        .then(logoutInfo => console.log(logoutInfo))
+        
+        this.props.onLogout();
+    }
+    
     render() {
         return(
             <div>
-                <Header onLogOut={this.props.onLogout} onUserPage={this.goToUserProfile} onSearchPage={this.backToSearchPage} user={this.props.user}/>
+                <Header onLogOut={this.onLogout} onUserPage={this.goToUserProfile} onSearchPage={this.backToSearchPage} user={this.props.user}/>
                 {this.state.inUserPage && <UserPage user={this.props.user} deleteComment={this.props.deleteComment} reviews={this.props.reviews}/>}
                 {this.state.inMovieInfo && <MoviePage comments={this.props.comments} movie={this.state.currentMovie} user={this.props.user} addComment={this.props.addComment}/>}
                 {this.state.inSearchPage &&

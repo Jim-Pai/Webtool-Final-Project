@@ -3,11 +3,6 @@ import './index.css';
 import logo from './ic_face_black_24px.svg';
 
 class MovieComments extends Component {
-    constructor(props) {
-        super(props);
-        //console.log(props.movieComments);
-    }
-
     render() {
         return(
             <div className="mp-container">
